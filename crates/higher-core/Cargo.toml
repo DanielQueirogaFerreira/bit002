@@ -8,7 +8,25 @@ license.workspace = true
 repository.workspace = true
 authors.workspace = true
 
+# O harness padrão do libtest também é um alvo de bench e não entende as
+# flags do criterion (`--save-baseline`). Desligá-lo deixa `cargo bench`
+# rodar só o bench de verdade.
+[lib]
+bench = false
+
 [dependencies]
+
+[dev-dependencies]
+proptest = "1"
+criterion = { version = "0.5", default-features = false, features = ["cargo_bench_support"] }
+
+[[bench]]
+name = "packing"
+harness = false
+
+[[test]]
+name = "packing_roundtrip"
+bench = false
 
 [lints.rust]
 missing_docs = "warn"

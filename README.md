@@ -22,11 +22,16 @@ válido. Previsão nunca é apresentada como medição.
 
 ## Estado
 
-Etapa **E0 — fundação** concluída, com CI verde: workspace, toolchain fixa
-e estrutura.
-Relatório em [`results/ETAPA-00.md`](results/ETAPA-00.md). O codec começa na
-E1 (packing 1..32); até lá nenhum número de compressão ou de tempo existe
-neste repositório.
+- **E0 — fundação** concluída ([`results/ETAPA-00.md`](results/ETAPA-00.md)):
+  workspace, toolchain fixa, CI e estrutura.
+- **E1 — packing de bits 1..32** concluída ([`results/ETAPA-01.md`](results/ETAPA-01.md)):
+  `BitWriter`/`BitReader` MSB-first para toda largura de 1 a 32, com caminhos
+  especializados e microbench por `b`.
+
+Ainda **não existe nenhum número de compressão**: tabela, tokenizador e o
+formato `.hgr` são a E2. Os tempos do bench de packing são microbench de
+repositório, não a medição oficial de processamento — essa é a E5, com o
+protocolo de [`docs/02 §6`](docs/02-BENCHMARK.md).
 
 ## Comandos
 
@@ -35,6 +40,7 @@ cargo test --workspace                 # testes de unidade e, a partir da E2, ro
 cargo clippy --workspace --all-targets -- -D warnings
 cargo fmt --all --check
 cargo run -p bitbench -- models        # as 32 larguras com faixa, capacidade e limiar
+cargo bench -p higher-core             # microbench de pack/unpack por b
 cargo build -p higher-wasm --target wasm32-unknown-unknown --release
 ```
 

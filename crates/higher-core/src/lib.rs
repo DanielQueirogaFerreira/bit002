@@ -5,14 +5,18 @@
 //! que o tempo medido no nativo e o comportamento visto no browser vêm do
 //! mesmo código (ver `CLAUDE.md`, seção "Stack").
 //!
-//! Na Etapa E0 só existe o vocabulário do projeto: larguras, faixas,
-//! variantes e os limiares derivados de `docs/00-TESE.md §3`. O packing
-//! (E1), o modelo paramétrico e o formato `.hgr` (E2) entram nas etapas
-//! seguintes.
+//! O que existe até aqui:
+//!
+//! - [`model`] — o vocabulário do projeto: larguras, faixas, variantes e os
+//!   limiares derivados de `docs/00-TESE.md §3` (E0);
+//! - [`packing`] — `BitWriter`/`BitReader` MSB-first para `b` de 1 a 32 (E1).
+//!
+//! O modelo paramétrico com tabela e o formato `.hgr` são a E2.
 
 #![forbid(unsafe_code)]
 
 pub mod model;
+pub mod packing;
 
 /// Versão do crate, propagada para o cabeçalho dos runs (`docs/02 §6.1`).
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
