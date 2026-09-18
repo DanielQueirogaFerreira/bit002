@@ -15,6 +15,11 @@ authors.workspace = true
 bench = false
 
 [dependencies]
+# sha256 do `table_id` (docs/01 §8) e crc32 do payload (docs/01 §8).
+# Escritos à mão seriam ~150 linhas de código criptográfico não testado
+# num projeto cujo produto é medição, não hash.
+sha2 = { version = "0.10", default-features = false }
+crc32fast = { version = "1", default-features = false }
 
 [dev-dependencies]
 proptest = "1"

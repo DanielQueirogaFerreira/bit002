@@ -27,11 +27,16 @@ válido. Previsão nunca é apresentada como medição.
 - **E1 — packing de bits 1..32** concluída ([`results/ETAPA-01.md`](results/ETAPA-01.md)):
   `BitWriter`/`BitReader` MSB-first para toda largura de 1 a 32, com caminhos
   especializados e microbench por `b`.
+- **E2 — modelo paramétrico e formato `.hgr`** concluída
+  ([`results/ETAPA-02.md`](results/ETAPA-02.md)): tabela M2, tokenizador
+  P-greedy com trie, escape do LOWER, cabeçalho de 36 bytes com `table_id`
+  e crc32.
 
-Ainda **não existe nenhum número de compressão**: tabela, tokenizador e o
-formato `.hgr` são a E2. Os tempos do bench de packing são microbench de
-repositório, não a medição oficial de processamento — essa é a E5, com o
-protocolo de [`docs/02 §6`](docs/02-BENCHMARK.md).
+O codec já roda de ponta a ponta, mas **nenhum número aqui sustenta ou refuta
+H1–H7**: não há corpus real (E3) nem baseline alguma — gzip, zstd, brotli,
+lz4, BPE (E4). Os tempos do bench de packing são microbench de repositório,
+não a medição oficial de processamento, que é a E5 com o protocolo de
+[`docs/02 §6`](docs/02-BENCHMARK.md).
 
 ## Comandos
 

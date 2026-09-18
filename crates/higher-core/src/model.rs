@@ -105,6 +105,14 @@ impl std::error::Error for WidthOutOfRange {}
 pub struct Width(u8);
 
 impl Width {
+    /// A largura da régua, `base-8`.
+    ///
+    /// Existe como constante porque o codec precisa dela em caminhos que
+    /// não podem entrar em pânico (ler os 8 bits brutos de um ESCAPE, por
+    /// exemplo), e `Width::new(8).unwrap()` seria um `panic!` escondido
+    /// justamente onde o aceite da E2 proíbe um.
+    pub const BASE: Self = Self(BASE_BITS);
+
     /// Constrói a largura, recusando qualquer valor fora de `1..=32`.
     ///
     /// # Errors

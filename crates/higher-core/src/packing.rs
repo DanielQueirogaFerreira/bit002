@@ -475,6 +475,32 @@ impl<'a> BitReader<'a> {
         self.bit_pos.is_multiple_of(8)
     }
 
+    /// `true` se todos os bits ainda não lidos são zero.
+    ///
+    /// É a verificação do completamento de `docs/01 §7` para quem lê com o
+    /// `BitReader` direto, em vez de por [`unpack`]. Não consome nada.
+    #[must_use]
+    pub fn remaining_is_zero(&self) -> bool {
+        let inicio = self.bit_pos;
+        #[allow(clippy::cast_possible_truncation)]
+        let byte_idx = (inicio / 8) as usize;
+        #[allow(clippy::cast_possible_truncation)]
+        let offset = (inicio % 8) as u32;
+
+        if byte_idx >= self.src.len() {
+            return true;
+        }
+        // Bits restantes do byte corrente, abaixo do ponto de leitura.
+        if offset > 0 {
+            let mascara = (1u16 << (8 - offset)) - 1;
+            if u16::from(self.src[byte_idx]) & mascara != 0 {
+                return false;
+            }
+            return self.src[byte_idx + 1..].iter().all(|&b| b == 0);
+        }
+        self.src[byte_idx..].iter().all(|&b| b == 0)
+    }
+
     /// Lê um símbolo de largura `w`, ou `None` se não houver bits suficientes.
     pub fn read(&mut self, w: Width) -> Option<u32> {
         let bits = u32::from(w.bits());
