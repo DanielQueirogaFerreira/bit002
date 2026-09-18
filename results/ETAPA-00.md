@@ -2,7 +2,7 @@
 
 Fechamento da etapa E0 de [`docs/03-ETAPAS.md`](../docs/03-ETAPAS.md).
 
-- Commit: preenchido no commit que traz este arquivo
+- Commit da etapa: `1a8c6d2`
 - Data: 2026-09-18
 - Toolchain: `rustc 1.94.1 (e408947bf 2026-03-25)`, fixada em `rust-toolchain.toml`
 
@@ -86,12 +86,25 @@ $ ls -l target/wasm32-unknown-unknown/release/higher_wasm.wasm
 43375 bytes
 ```
 
-### 2.4 CI — **não verificada nesta máquina**
+### 2.4 CI — verde [MEDIDO]
 
-O workflow existe e o YAML é válido, mas GitHub Actions só roda depois do
-push. Os quatro passos do job `rust` são exatamente os comandos de §2.1–2.3,
-que passam localmente. **Confirmar o verde da CI no push** antes de abrir a
-E1.
+Run [#1](https://github.com/DanielQueirogaFerreira/bit002/actions/runs/35320721817)
+no commit `1a8c6d2`, branch `claude/serene-johnson-xt84l2`. Os dois jobs
+concluíram com sucesso, todos os passos verdes:
+
+| Job | Passo | Conclusão |
+|---|---|---|
+| `test + clippy + wasm` | toolchain de `rust-toolchain.toml` | success |
+| | Formatação (`cargo fmt --all --check`) | success |
+| | Clippy (`-D warnings`) | success |
+| | Testes (`cargo test --workspace --all-targets`) | success |
+| | Build WASM (`wasm32-unknown-unknown --release`) | success |
+| `scripts da UI` | `node scripts/gen-version.mjs` | success |
+| | campos de `docs/04 §3` em `web/version.json` | success |
+
+Duração total: ~38 s. A toolchain fixa de `rust-toolchain.toml` foi
+resolvida pelo runner sem precisar de `dtolnay/rust-toolchain`, o que
+mantém uma única fonte da verdade para a versão do compilador.
 
 ### 2.5 Estrutura igual ao `CLAUDE.md` — conferida
 
@@ -178,5 +191,5 @@ resposta antes da etapa indicada.
 
 ## 5. Próxima etapa
 
-**E1 — Packing de bits 1..32.** Pré-requisito: confirmar o verde da CI no
-push (§2.4).
+**E1 — Packing de bits 1..32.** Sem pré-requisito pendente: os quatro
+critérios de aceite da E0 estão verificados (§2).

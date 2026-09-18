@@ -22,7 +22,8 @@ válido. Previsão nunca é apresentada como medição.
 
 ## Estado
 
-Etapa **E0 — fundação** concluída: workspace, toolchain fixa, CI e estrutura.
+Etapa **E0 — fundação** concluída, com CI verde: workspace, toolchain fixa
+e estrutura.
 Relatório em [`results/ETAPA-00.md`](results/ETAPA-00.md). O codec começa na
 E1 (packing 1..32); até lá nenhum número de compressão ou de tempo existe
 neste repositório.
