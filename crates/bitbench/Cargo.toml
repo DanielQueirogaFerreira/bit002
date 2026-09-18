@@ -1,0 +1,16 @@
+[package]
+name = "bitbench"
+description = "CLI de benchmark da Arquitetura Higher: sweep 1..32, corpora, métricas, export JSON/CSV"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[dependencies]
+higher-core.workspace = true
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }

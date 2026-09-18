@@ -1,0 +1,32 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/higher-core",
+    "crates/bitbench",
+    "crates/higher-wasm",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.94"
+license = "MIT"
+repository = "https://github.com/DanielQueirogaFerreira/bit002"
+authors = ["Daniel Queiroga Ferreira"]
+
+[workspace.dependencies]
+higher-core = { path = "crates/higher-core", version = "0.1.0" }
+
+# Perfil usado por toda medição de processamento (docs/02 §5).
+# `codegen-units = 1` e `lto` removem variação de layout entre runs.
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+debug = false
+
+# Igual ao release, mas com símbolos: é o perfil para `perf stat`/`perf record`,
+# que precisa resolver nomes de função para atribuir os contadores.
+[profile.bench]
+inherits = "release"
+debug = true

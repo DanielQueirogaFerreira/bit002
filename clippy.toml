@@ -1,0 +1,2 @@
+# Tabelas e larguras de bits produzem muitas constantes numéricas legítimas.
+msrv = "1.94.0"

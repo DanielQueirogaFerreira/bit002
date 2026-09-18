@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  rust:
+    name: test + clippy + wasm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # A toolchain vem de rust-toolchain.toml, inclusive o target wasm32.
+      # Não fixe a versão aqui também: duas fontes divergem.
+      - name: Instala a toolchain de rust-toolchain.toml
+        run: |
+          rustup show active-toolchain || rustup toolchain install
+          rustc --version
+          cargo --version
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Formatação
+        run: cargo fmt --all --check
+
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+
+      - name: Testes
+        run: cargo test --workspace --all-targets
+
+      - name: Build WASM
+        run: cargo build -p higher-wasm --target wasm32-unknown-unknown --release
+
+  node:
+    name: scripts da UI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Gera web/version.json
+        run: node scripts/gen-version.mjs
+      - name: version.json é JSON válido e tem os campos de docs/04 §3
+        run: |
+          node -e '
+            const v = JSON.parse(require("fs").readFileSync("web/version.json", "utf8"));
+            for (const campo of ["version", "commit", "build_ts_ms"]) {
+              if (v[campo] === undefined) {
+                throw new Error(`web/version.json sem o campo ${campo}`);
+              }
+            }
+            console.log(v);
+          '

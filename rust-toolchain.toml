@@ -1,0 +1,8 @@
+# Toolchain fixa: medições de processamento (docs/02) só são comparáveis
+# entre runs se o compilador for o mesmo. Trocar de versão invalida os
+# baselines de criterion — registre a troca no relatório da etapa.
+[toolchain]
+channel = "1.94.1"
+components = ["rustfmt", "clippy"]
+targets = ["wasm32-unknown-unknown"]
+profile = "minimal"

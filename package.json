@@ -1,0 +1,18 @@
+{
+  "name": "bit002",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Arquitetura Higher — UI, Worker Cloudflare e build WASM",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DanielQueirogaFerreira/bit002"
+  },
+  "type": "module",
+  "scripts": {
+    "gen-version": "node scripts/gen-version.mjs",
+    "build:wasm": "wasm-pack build crates/higher-wasm --target web --out-dir ../../web/pkg",
+    "build": "npm run build:wasm && npm run gen-version",
+    "deploy": "wrangler deploy --config worker/wrangler.toml"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "comentario": "Fontes dos corpora reais (docs/02 §2.1). Preenchido na Etapa E3. Cada entrada precisa de url, sha256 e licenca antes de entrar no manifest — sem sha256 o download não é verificável.",
+  "categorias": [
+    { "id": "texto-en", "descricao": "enwik8, primeiros 10 MB", "arquivos": [] },
+    { "id": "texto-pt", "descricao": "amostra de dump da Wikipédia PT", "arquivos": [] },
+    { "id": "codigo", "descricao": "Silesia samba/mozilla ou repo público misto", "arquivos": [] },
+    { "id": "logs", "descricao": "Loghub (Apache, HDFS, Linux)", "arquivos": [] },
+    { "id": "estruturado", "descricao": "JSON/CSV de dados abertos", "arquivos": [] },
+    { "id": "binario", "descricao": "executáveis (Silesia ooffice, x-ray)", "arquivos": [] },
+    { "id": "ja-comprimido", "descricao": "PNG/JPEG/MP3 — controle negativo", "arquivos": [] },
+    { "id": "alfabeto-restrito", "descricao": "DNA (FASTA público) e dígitos", "arquivos": [] },
+    { "id": "silesia", "descricao": "Silesia completo, 12 arquivos", "arquivos": [] }
+  ]
+}
