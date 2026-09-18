@@ -1,0 +1,361 @@
+{
+  "etapa": "E1",
+  "o_que_e": "Microbench de packing puro por largura. NÃO é enc_ns_per_byte de docs/02 §5: não há tabela, tokenização nem corpus. A medição oficial de processamento é a E5, com o protocolo de docs/02 §6.",
+  "rotulo": "[MEDIDO]",
+  "commit": "09790e50e59b5c731859d9455d141f8dcaae0a24",
+  "timestamp_ms": 1789765875726,
+  "data_iso": "2026-09-18T21:11:15.726609+00:00",
+  "env": "native",
+  "maquina": {
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "nucleos": 4,
+    "mem_kb": 16482220,
+    "kernel": "Linux 6.18.44-fc-v33",
+    "dedicada": false,
+    "governor": "N/D — não exposto no container",
+    "turbo": "N/D — não exposto no container",
+    "taskset": "cpu 0",
+    "perf_disponivel": false,
+    "ressalva": "Container compartilhado. docs/02 §6 exige máquina dedicada e governor 'performance'; nada disso é verificável aqui. Os números servem para comparar larguras entre si no mesmo run e para detectar regressão, não como medida absoluta."
+  },
+  "toolchain": "rustc 1.94.1 (e408947bf 2026-03-25)",
+  "perfil": "bench (herda release: lto=fat, codegen-units=1, debug=true)",
+  "target_cpu": "genérico (sem -C target-cpu=native)",
+  "criterion": {
+    "warm_up_ms": 500,
+    "measurement_time_s": 2,
+    "sample_size": 50,
+    "baseline": "e1",
+    "estatistica": "mediana do intervalo do criterion"
+  },
+  "carga": {
+    "n_simbolos": 16384,
+    "seed": 42,
+    "prng": "SplitMix64",
+    "working_set_bytes": 65536,
+    "nota": "64 KB de saída cabem em cache. Fora de cache o ranking muda; medir isso é a E5."
+  },
+  "unidade": "ns por símbolo",
+  "medicoes": [
+    {
+      "b": 1,
+      "strategy": "group",
+      "pack_ns_sym": 0.7808,
+      "unpack_ns_sym": 0.7534,
+      "pack_generic_ns_sym": 1.8097,
+      "unpack_generic_ns_sym": 2.1688,
+      "pack_ganho_vs_generic": 2.318,
+      "unpack_ganho_vs_generic": 2.879
+    },
+    {
+      "b": 2,
+      "strategy": "group",
+      "pack_ns_sym": 0.8588,
+      "unpack_ns_sym": 0.8024,
+      "pack_generic_ns_sym": 1.8976,
+      "unpack_generic_ns_sym": 2.129,
+      "pack_ganho_vs_generic": 2.21,
+      "unpack_ganho_vs_generic": 2.653
+    },
+    {
+      "b": 3,
+      "strategy": "group",
+      "pack_ns_sym": 0.8635,
+      "unpack_ns_sym": 0.7767,
+      "pack_generic_ns_sym": 1.9157,
+      "unpack_generic_ns_sym": 2.7552,
+      "pack_ganho_vs_generic": 2.219,
+      "unpack_ganho_vs_generic": 3.547
+    },
+    {
+      "b": 4,
+      "strategy": "group",
+      "pack_ns_sym": 0.9926,
+      "unpack_ns_sym": 0.9161,
+      "pack_generic_ns_sym": 2.0045,
+      "unpack_generic_ns_sym": 2.1674,
+      "pack_ganho_vs_generic": 2.019,
+      "unpack_ganho_vs_generic": 2.366
+    },
+    {
+      "b": 5,
+      "strategy": "group",
+      "pack_ns_sym": 0.9313,
+      "unpack_ns_sym": 0.783,
+      "pack_generic_ns_sym": 2.1352,
+      "unpack_generic_ns_sym": 3.1925,
+      "pack_ganho_vs_generic": 2.293,
+      "unpack_ganho_vs_generic": 4.077
+    },
+    {
+      "b": 6,
+      "strategy": "group",
+      "pack_ns_sym": 0.9192,
+      "unpack_ns_sym": 0.8197,
+      "pack_generic_ns_sym": 2.1738,
+      "unpack_generic_ns_sym": 3.2569,
+      "pack_ganho_vs_generic": 2.365,
+      "unpack_ganho_vs_generic": 3.973
+    },
+    {
+      "b": 7,
+      "strategy": "group",
+      "pack_ns_sym": 0.9363,
+      "unpack_ns_sym": 0.7906,
+      "pack_generic_ns_sym": 2.2334,
+      "unpack_generic_ns_sym": 3.7731,
+      "pack_ganho_vs_generic": 2.385,
+      "unpack_ganho_vs_generic": 4.772
+    },
+    {
+      "b": 8,
+      "strategy": "native",
+      "pack_ns_sym": 0.7565,
+      "unpack_ns_sym": 0.0941,
+      "pack_generic_ns_sym": 2.305,
+      "unpack_generic_ns_sym": 2.1354,
+      "pack_ganho_vs_generic": 3.047,
+      "unpack_ganho_vs_generic": 22.693
+    },
+    {
+      "b": 9,
+      "strategy": "generic",
+      "pack_ns_sym": 2.3917,
+      "unpack_ns_sym": 4.4383,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 10,
+      "strategy": "group",
+      "pack_ns_sym": 0.889,
+      "unpack_ns_sym": 0.8071,
+      "pack_generic_ns_sym": 2.5468,
+      "unpack_generic_ns_sym": 4.2388,
+      "pack_ganho_vs_generic": 2.865,
+      "unpack_ganho_vs_generic": 5.252
+    },
+    {
+      "b": 11,
+      "strategy": "generic",
+      "pack_ns_sym": 2.5392,
+      "unpack_ns_sym": 4.8273,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 12,
+      "strategy": "group",
+      "pack_ns_sym": 1.1092,
+      "unpack_ns_sym": 0.9679,
+      "pack_generic_ns_sym": 2.7182,
+      "unpack_generic_ns_sym": 4.294,
+      "pack_ganho_vs_generic": 2.451,
+      "unpack_ganho_vs_generic": 4.436
+    },
+    {
+      "b": 13,
+      "strategy": "generic",
+      "pack_ns_sym": 2.7256,
+      "unpack_ns_sym": 5.4553,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 14,
+      "strategy": "group",
+      "pack_ns_sym": 1.0106,
+      "unpack_ns_sym": 0.8049,
+      "pack_generic_ns_sym": 2.9615,
+      "unpack_generic_ns_sym": 5.384,
+      "pack_ganho_vs_generic": 2.93,
+      "unpack_ganho_vs_generic": 6.689
+    },
+    {
+      "b": 15,
+      "strategy": "generic",
+      "pack_ns_sym": 2.9526,
+      "unpack_ns_sym": 5.8249,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 16,
+      "strategy": "native",
+      "pack_ns_sym": 1.3193,
+      "unpack_ns_sym": 0.1095,
+      "pack_generic_ns_sym": 2.9795,
+      "unpack_generic_ns_sym": 4.2628,
+      "pack_ganho_vs_generic": 2.258,
+      "unpack_ganho_vs_generic": 38.93
+    },
+    {
+      "b": 17,
+      "strategy": "generic",
+      "pack_ns_sym": 3.1276,
+      "unpack_ns_sym": 6.59,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 18,
+      "strategy": "generic",
+      "pack_ns_sym": 3.2959,
+      "unpack_ns_sym": 6.4661,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 19,
+      "strategy": "generic",
+      "pack_ns_sym": 3.4314,
+      "unpack_ns_sym": 7.2546,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 20,
+      "strategy": "group",
+      "pack_ns_sym": 1.1132,
+      "unpack_ns_sym": 0.9902,
+      "pack_generic_ns_sym": 3.4001,
+      "unpack_generic_ns_sym": 6.3721,
+      "pack_ganho_vs_generic": 3.054,
+      "unpack_ganho_vs_generic": 6.435
+    },
+    {
+      "b": 21,
+      "strategy": "generic",
+      "pack_ns_sym": 3.7539,
+      "unpack_ns_sym": 7.5482,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 22,
+      "strategy": "generic",
+      "pack_ns_sym": 3.7953,
+      "unpack_ns_sym": 7.6227,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 23,
+      "strategy": "generic",
+      "pack_ns_sym": 3.8874,
+      "unpack_ns_sym": 8.1671,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 24,
+      "strategy": "group",
+      "pack_ns_sym": 1.4049,
+      "unpack_ns_sym": 1.1142,
+      "pack_generic_ns_sym": 3.517,
+      "unpack_generic_ns_sym": 6.441,
+      "pack_ganho_vs_generic": 2.503,
+      "unpack_ganho_vs_generic": 5.781
+    },
+    {
+      "b": 25,
+      "strategy": "generic",
+      "pack_ns_sym": 4.0095,
+      "unpack_ns_sym": 8.6133,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 26,
+      "strategy": "generic",
+      "pack_ns_sym": 4.192,
+      "unpack_ns_sym": 8.6694,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 27,
+      "strategy": "generic",
+      "pack_ns_sym": 4.0773,
+      "unpack_ns_sym": 9.1956,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 28,
+      "strategy": "group",
+      "pack_ns_sym": 1.2551,
+      "unpack_ns_sym": 0.9794,
+      "pack_generic_ns_sym": 4.0706,
+      "unpack_generic_ns_sym": 8.5114,
+      "pack_ganho_vs_generic": 3.243,
+      "unpack_ganho_vs_generic": 8.69
+    },
+    {
+      "b": 29,
+      "strategy": "generic",
+      "pack_ns_sym": 5.3643,
+      "unpack_ns_sym": 9.6875,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 30,
+      "strategy": "generic",
+      "pack_ns_sym": 4.6076,
+      "unpack_ns_sym": 9.6265,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 31,
+      "strategy": "generic",
+      "pack_ns_sym": 4.8213,
+      "unpack_ns_sym": 10.1202,
+      "pack_generic_ns_sym": null,
+      "unpack_generic_ns_sym": null,
+      "pack_ganho_vs_generic": null,
+      "unpack_ganho_vs_generic": null
+    },
+    {
+      "b": 32,
+      "strategy": "native",
+      "pack_ns_sym": 0.7475,
+      "unpack_ns_sym": 0.2664,
+      "pack_generic_ns_sym": 3.9383,
+      "unpack_generic_ns_sym": 8.7451,
+      "pack_ganho_vs_generic": 5.269,
+      "unpack_ganho_vs_generic": 32.827
+    }
+  ]
+}
